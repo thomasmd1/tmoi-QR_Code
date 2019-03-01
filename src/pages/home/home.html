@@ -15,14 +15,15 @@
         type="text"
         placeholder="Enter code here"
       ></ion-input>
-      <button ion-button (click)="generateQrCode(inputText)">
+      <button ion-button (click)="generateQrCode(inputText)" icon-start>
+        <ion-icon name="barcode"></ion-icon>
         Générer le QR Code
       </button>
       <img [src]="generatedQrCode" class="qrCode" />
     </ion-card-content>
   </ion-card>
   <ion-fab right bottom *ngIf="qrCodeIsGenerate()">
-    <button ion-fab color=fabButton >
+    <button ion-fab color=fabButton>
       <ion-icon name="arrow-dropup"></ion-icon>
     </button>
     <ion-fab-list side="top">
