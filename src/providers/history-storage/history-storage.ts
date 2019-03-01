@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, EventEmitter } from '@angular/core';
-import { Storage } from '@ionic/storage';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Storage } from "@ionic/storage";
 
 /*
   Generated class for the HistoryStorageProvider provider.
@@ -10,26 +10,19 @@ import { Storage } from '@ionic/storage';
 */
 @Injectable()
 export class HistoryStorageProvider {
+  private qrCodeList: Array<{ text: string; createdAt: Date }> = [];
 
-  private qrCodeList: Array<{ text:string, createdAt: Date }> = [];
-  public EventEmit: EventEmitter<any[]> = new EventEmitter();
+  constructor(public http: HttpClient, public storage: Storage) {}
 
-  constructor(public http: HttpClient, public storage: Storage) {
-    console.log('Hello HistoryStorageProvider Provider');
-  }
-
-  addQrCodeToList(text: string){
+  addQrCodeToList(text: string) {
     this.qrCodeList.push({
       text,
       createdAt: new Date()
-  });
-  this.saveToStorage();
-  this.EventEmit.emit(this.qrCodeList);
-  console.log(this.qrCodeList);
+    });
+    this.saveToStorage();
   }
 
-  private saveToStorage(){
-    this.storage.set('history_data', this.qrCodeList);
+  private saveToStorage() {
+    this.storage.set("history_data", this.qrCodeList);
   }
-
 }

@@ -5,23 +5,32 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>qrcodeRead</ion-title>
+    <ion-title>Lire un QR Code</ion-title>
     <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
+      <ion-icon name="menu" color="light"></ion-icon>
+    </button>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content padding>
+  <ion-grid>
     <ion-card>
-        <ion-card-content>
-          <button ion-button (click)="useCamera()">Ouvrir l'appareil photo</button>
-          <button ion-button >Importer une image</button>
-          <h4>Décodage QR Code : {{qrCodeText}}</h4>
-        </ion-card-content>
-      </ion-card>
+      <ion-card-content>
+        <ion-row>
+          <button ion-button block (click)="useCamera()">
+            Ouvrir l'appareil photo
+          </button>
+        </ion-row>
+        <ion-row>
+          <button ion-button block (click)="useLibrary()">
+            Importer une image
+          </button></ion-row
+        >
+      </ion-card-content>
+    </ion-card>
+    <ion-row padding>
+      <h4>Décodage QR Code : {{ qrCodeText }}</h4>
+    </ion-row>
+  </ion-grid>
 </ion-content>

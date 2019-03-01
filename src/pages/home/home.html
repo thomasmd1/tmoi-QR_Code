@@ -1,9 +1,9 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu" color="light"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Générer QR Code</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -15,14 +15,18 @@
         type="text"
         placeholder="Enter code here"
       ></ion-input>
-      <button ion-button block (click)="process(inputText)">
+      <button ion-button (click)="generateQrCode(inputText)">
         Générer le QR Code
-      </button>
-      <button ion-button icon-end (click)="share(generatedQrCode)">
-        Share
-        <ion-icon name="share"></ion-icon>
       </button>
       <img [src]="generatedQrCode" class="qrCode" />
     </ion-card-content>
   </ion-card>
+  <ion-fab right bottom *ngIf="qrCodeIsGenerate()">
+    <button ion-fab color=fabButton >
+      <ion-icon name="arrow-dropup"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab color=fabButton (click)="share(generatedQrCode)"><ion-icon name="share"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

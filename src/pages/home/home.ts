@@ -14,17 +14,23 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
+    public historyStorage: HistoryStorageProvider,
     public qrCodeProvider: QrCodeProvider,
     public socialSharing: SocialSharing,
-    public historyStorage: HistoryStorageProvider
   ) {}
 
-  process(text) {
+  generateQrCode(text) {
     this.inputText = text;
     this.qrCodeProvider.generate(text).then(text => {
       this.generatedQrCode = text;
-    });
+    }).catch(() => {
+      this.generatedQrCode='';
+    });;
     this.historyStorage.addQrCodeToList(text);
+  }
+
+  qrCodeIsGenerate(){
+    return this.generatedQrCode !== '';
   }
 
   share(qrCode) {
